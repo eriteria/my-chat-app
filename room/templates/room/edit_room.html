@@ -1,0 +1,41 @@
+{% extends 'room/base.html' %}
+
+{% block title %}Rooms | {% endblock %}
+
+
+{% block content %}
+     <div class="p-10 lg:p-20 text-center">
+        <h1 class="text-3xl lg:text-6xl text-white">Edit Room</h1>
+    </div>
+
+    <form action="{% url 'edit_room' room.slug %}" method="post" class="lg:w-1/4 px-4 mx-auto">
+        {% csrf_token %}
+
+       {% for field in form.visible_fields %}
+           <div class="mb-5">
+            {{ field.errors }}
+            {{ field.help_text }}
+               {{ field.label }}
+            {{ field }}
+           </div>
+        {% endfor %}
+    <button class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Submit</button>
+        <a class="px-5 py-3 rounded-xl text-white bg-red-300 hover:bg-teal-700" href="{% url 'delete_room' room.slug %}">Delete</a>
+
+
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const name = document.getElementById('id_name');
+        const slug = document.getElementById('id_slug');
+        const visibility = document.getElementById('id_visibility');
+
+
+        name.classList.add("w-full", "mt-2", "py-2", "rounded-xl")
+        slug.classList.add("w-full", "mt-2", "py-2", "rounded-xl")
+        visibility.classList.add("w-full", "mt-2", "py-2", "rounded-xl")
+        document.getElementById('id_members').classList.add("w-full", "mt-2", "py-2", "rounded-xl")
+    </script>
+{% endblock %}

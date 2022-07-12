@@ -1,11 +1,17 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
+from room.models import Room, Message
 
 
 # Create your views here.
 def front_page(request):
-    return render(request, 'core/frontpage.html')
+    recents = Message.objects.filter(user=request.user).order_by('-date_added')[:4]
+    # recents =
+    user_rooms = request.user.rooms.all()
+
+
+    return render(request, 'core/frontpage.html', {'recents': recents, 'unread': user_rooms})
 
 
 def signup(request):

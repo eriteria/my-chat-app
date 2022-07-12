@@ -1,4 +1,5 @@
-{% extends 'core/base.html' %}
+{% extends 'room/base.html' %}
+    {% load static %}
 
 {% block title %}Rooms | {% endblock %}
 
@@ -10,12 +11,41 @@
 
     <div class="w-full flex flex-wrap items-center">
         {% for room in rooms %}
+            {% if room.visibility == '1' %}
             <div class="w-full lg:w-1/4 px-3 py-3">
                 <div class="p-4 bg-white shadow rounded-xl text-center">
                     <h2 class="mb-5 text-2xl font-semibold">{{ room.name }}</h2>
-                    <a href="{% url 'room' room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Join</a>
+                    <a href="{% url 'room' room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700" id="join">Join</a>
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
+    <div class="w-full lg:w-1/4 px-3 py-3">
+                <div class="p-4 bg-white shadow rounded-xl text-center place-items-center">
+{#                    <h4 class="mb-5 text-2xl font-semibold">Join a private room</h4>#}
+{#                    <form action="{% url 'join_room' %}" method="post" id="join_room_form">#}
+{#                        {% csrf_token %}#}
+                    <input class="mb-4 w-full mt-2 py-2 rounded-xl text-center" type="text" name="room_slug" id="room_slug" placeholder="Enter the room's Slug">
+{#                        <button type="submit" id="click" hidden></button>#}
+                    <a href="#" id="join-button" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Join a private room</a>
+{#                </form>#}
+                </div>
+            </div>
+        <div class="w-full lg:w-1/4 px-3 py-3">
+                <div class="p-4 bg-white shadow rounded-xl text-center place-items-center">
+                    <h2 class="mb-5 text-2xl font-semibold">Create Room</h2>
+
+                    <a href="{% url 'create_room' %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Create</a>
+
+                </div>
+            </div>
     </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        document.getElementById("join-button").onclick = function (e){
+
+            document.location = "/rooms/join-room/" + document.getElementById("room_slug").value
+        };
+    </script>
 {% endblock %}
