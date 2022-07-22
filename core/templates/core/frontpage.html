@@ -5,8 +5,10 @@
 
 {% block content %}
     <div class="p-10 lg:p-20 text-center">
-        <h1 class="text-3xl lg:text-6xl text-white">Djangochat</h1>
+        <h1 class="text-3xl lg:text-6xl text-white">Riachat</h1>
     </div>
+{% if request.user.is_authenticated %}
+
         <p class="text-xl lg:text-3xl text-white text-center">Rooms I'm in</p>
 <div class="w-full flex flex-wrap items-center">
             {% for r in unread %}
@@ -31,5 +33,19 @@
             </div>
         {% endfor %}
 </div>
+{% else %}
+<p class="text-xl lg:text-3xl text-white text-center">Welcome to Riachat</p>
+<p class="text-xl lg:text-2xl text-white text-center">Join a room</p>
+<div class="w-full flex flex-wrap items-center">
+    {% for r in rooms %}
+    <div class="w-full lg:w-1/4 px-3 py-3">
+        <div class="p-4 bg-white shadow rounded-xl text-center">
+            <h2 class="mb-5 text-2xl font-semibold">{{ r.name }}</h2>
+                        {% if r.description %}<p>{{ r.description }}</p>{% endif %}
+            <a href="{% url 'room' r.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Join</a>
+        </div>
+    </div>
+{% endfor %}
+{% endif %}
 
 {% endblock %}

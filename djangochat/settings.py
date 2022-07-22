@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/rooms'
-LOGIN_URL = '/login'
+LOGIN_URL = 'account/login'
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'channels',
     'room',
+    'account',
 ]
 
 MIDDLEWARE = [

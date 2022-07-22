@@ -11,6 +11,7 @@ class Room(models.Model):
     visibility = models.CharField(max_length=10, choices=VISIBILITY_CHOICES, default='public')
     members = models.ManyToManyField(User, related_name="rooms", default=None)
     creator = models.ForeignKey(User, related_name='created_rooms', on_delete=models.DO_NOTHING, null=True)
+    description = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.name

@@ -3,17 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}Riachat</title>
-
-    <!-- Include Tailwind CSS -->
     {% load static %}
+    <!-- Include Tailwind CSS -->
     <link href="{% static 'core/output.css' %}" rel="stylesheet">
-
-    <style>
-        .chat-messages{
-            height: 400px;
-            overflow-y: auto;
-        }
-    </style>
 </head>
 <body class="bg-teal-600">
     <nav class="flex items-center justify-between px-4 py-6 bg-teal-800">
@@ -26,12 +18,9 @@
             <a href="/login" class="text-white hover:text-gray-200">Log in</a>
             <a href="/signup" class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Sign up</a>
             {% else %}
-                {% if location == 'room'%}
-                    <a href="{% url 'leave_room' room.slug %}" class="px-5 py-3 rounded-xl bg-red-600">Leave Room</a>
-                {% endif %}
                 <a href="/rooms" class="text-white hover:text-gray-200">Public Rooms</a>
+                <p class="text-white ">{{ request.user.username }}</p>
                 <a href="/logout" class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Log out</a>
-                <img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="{% static 'room/img/dummy_image.png' %}" alt="codingwithmitch logo" width="40" height="40">
 
 
             {% endif %}
@@ -40,8 +29,6 @@
 
     <div class="container mx-auto px-4">
         {% block content %}{% endblock %}
-
-    {% block scripts %}{% endblock %}
 
 </body>
 </html>
