@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-$!+lksqd0n#j6aqa&f1ni$9mmx32w2r5z2+dyw(wvc4q0e2)t1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["chateria.herokuapp.com", "localhost"]
 LOGOUT_REDIRECT_URL = '/'
@@ -141,4 +141,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_TRUSTED_ORIGINS = [
+    'https://chateria.herokuapp.com'
+]
 django_on_heroku.settings(locals())
