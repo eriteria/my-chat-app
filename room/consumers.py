@@ -8,14 +8,15 @@ from django.contrib.auth.models import User
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
+        print('awaiting t1')
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
-
+        print('awaiting t2')
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
         )
-
+        print('awaiting t3')
         await self.accept()
 
     async def disconnect(self, code):
