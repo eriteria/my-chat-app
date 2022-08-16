@@ -8,7 +8,7 @@
         <h1 class="text-3xl lg:text-6xl text-white">Sign up</h1>
     </div>
 
-    <form action="/signup/" method="post" class="lg:w-1/4 px-4 mx-auto">
+    <form action="{% url 'signup' %}" method="post" class="lg:w-1/4 px-4 mx-auto">
         {% csrf_token %}
 
         <div class="mb-5">

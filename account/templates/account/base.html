@@ -15,12 +15,12 @@
 
         <div class="flex items-center space-x-4">
             {% if not request.user.is_authenticated %}
-            <a href="/login" class="text-white hover:text-gray-200">Log in</a>
-            <a href="/signup" class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Sign up</a>
+            <a href="{% url 'login' %}" class="text-white hover:text-gray-200">Log in</a>
+            <a href="{% url 'signup' %}" class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Sign up</a>
             {% else %}
-                <a href="/rooms" class="text-white hover:text-gray-200">Public Rooms</a>
+                <a href="{% url 'rooms' %}" class="text-white hover:text-gray-200">Public Rooms</a>
                 <p class="text-white ">{{ request.user.username }}</p>
-                <a href="/logout" class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Log out</a>
+                <a href="{% url 'profile' %}"><img class="account-imag" id="id_profile_links" src="{% static 'room/img/dummy_image.png' %}" alt="Ria Pay Default Profile Image" width="40" height="40"></a>
 
 
             {% endif %}
