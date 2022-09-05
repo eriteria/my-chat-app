@@ -5,6 +5,7 @@ from room.models import Room, Message
 
 # Create your views here.
 def front_page(request):
+    # print(request)
     if request.user.is_authenticated:
         recents = Message.objects.filter(user=request.user).order_by('-date_added')[:4]
         # recents =
