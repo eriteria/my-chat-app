@@ -93,11 +93,11 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'chat_app_db',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'xkiNhgAWSNqWJoLdJxUyWOnngBJwwMsY',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '11133',
     }
 }
 
